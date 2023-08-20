@@ -1,12 +1,12 @@
 {
   "name": "videojs-spatial-navigation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Spatial Navigation in Video.js",
-  "main": "dist/plugin.js",
-  "module": "dist/plugin.mjs",
-  "types": "dist/plugin.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/plugin.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc"
   },
   "repository": {
