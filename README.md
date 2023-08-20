@@ -10,20 +10,14 @@ npm i videojs-spatial-navigation
 
 ## Usage
 
-To include videojs-spatial-navigation on your website or web application, use any of the following methods.
+```js
+import 'videojs-spatial-navigation';
 
-### `<script>` Tag
+import videojs from 'video.js';
 
-This is the simplest case. Get the script in whatever way you prefer and include the plugin _after_ you include [video.js][videojs], so that the `videojs` global is available.
+const player = videojs('my-video');
 
-```html
-<script src="//path/to/video.min.js"></script>
-<script src="//path/to/videojs-spatial-navigation/index.js"></script>
-<script>
-  var player = videojs('my-video');
-
-  player.spatialNavigation();
-</script>
+player.spatialNavigation();
 ```
 
 ## License
