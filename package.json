@@ -1,0 +1,36 @@
+{
+  "name": "videojs-spatial-navigation",
+  "version": "0.0.1",
+  "description": "Spatial Navigation in Video.js",
+  "main": "dist/plugin.js",
+  "module": "dist/plugin.mjs",
+  "types": "dist/plugin.d.ts",
+  "scripts": {
+    "build": "tsup src/plugin.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyawswarthwin/videojs-spatial-navigation.git"
+  },
+  "keywords": [
+    "videojs",
+    "videojs-plugin"
+  ],
+  "author": "Kyaw Swar Thwin <myanmarunicorn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kyawswarthwin/videojs-spatial-navigation/issues"
+  },
+  "homepage": "https://github.com/kyawswarthwin/videojs-spatial-navigation#readme",
+  "dependencies": {
+    "jquery": "^3.7.0",
+    "video.js": "^7"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.16",
+    "@types/video.js": "^7.3.52",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6"
+  }
+}
