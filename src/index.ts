@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $ from 'cash-dom';
 import videojs from 'video.js';
 
 import { version as VERSION } from '../package.json';
@@ -19,11 +19,11 @@ class SpatialNavigation extends Plugin {
     this.options = videojs.mergeOptions(defaults, options);
 
     this.player.ready(() => {
-      this.player.on('keydown', (event) => {
+      this.player.on('keydown', (event: KeyboardEvent) => {
         if (event.keyCode === 13) {
           // Enter
           if (!$(':focus').is('li.vjs-menu-item')) {
-            $('.vjs-play-control').focus();
+            $('.vjs-play-control').trigger('focus');
           }
         }
       });
@@ -31,34 +31,42 @@ class SpatialNavigation extends Plugin {
       $('.vjs-control-bar')
         .find('.vjs-button')
         .attr('tabindex', '-1')
-        .keydown((event) => {
+        .on('keydown', (event: KeyboardEvent) => {
           event.preventDefault();
 
           if (event.keyCode === 13) {
             // Enter
-            $(':focus').click();
+            $(':focus').trigger('click');
           } else if (event.keyCode === 37) {
             // ArrowLeft
-            $(':focus').prevAll('.vjs-button:not(.vjs-hidden)').first().focus();
+            $(':focus')
+              .prevAll('.vjs-button:not(.vjs-hidden)')
+              .first()
+              .trigger('focus');
           } else if (event.keyCode === 39) {
             // ArrowRight
-            $(':focus').nextAll('.vjs-button:not(.vjs-hidden)').first().focus();
+            $(':focus')
+              .nextAll('.vjs-button:not(.vjs-hidden)')
+              .first()
+              .trigger('focus');
           }
         });
 
       $('.vjs-control-bar')
         .find('div.vjs-menu-button')
-        .keydown(function (event) {
+        .on('keydown', (event: KeyboardEvent) => {
+          const node = event.target as HTMLElement;
+
           if (event.keyCode === 13) {
             // Enter
-            $(this).find('button.vjs-button').click();
+            $(node).find('button.vjs-button').trigger('click');
 
-            $(this)
+            $(node)
               .find('ul.vjs-menu-content > li.vjs-menu-item')
-              .keydown((event) => {
+              .on('keydown', (event: KeyboardEvent) => {
                 if (event.keyCode === 13) {
                   // Enter
-                  $(this).focus();
+                  $(node).trigger('focus');
                 }
               });
           }
