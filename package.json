@@ -1,6 +1,6 @@
 {
   "name": "videojs-spatial-navigation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Spatial Navigation in Video.js",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

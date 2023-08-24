@@ -20,9 +20,11 @@ class SpatialNavigation extends Plugin {
 
     this.player.ready(() => {
       this.player.on('keydown', (event: KeyboardEvent) => {
+        const element = event.target as HTMLElement;
+
         if (event.keyCode === 13) {
           // Enter
-          if (!$(':focus').is('li.vjs-menu-item')) {
+          if ($(element).is('.video-js')) {
             $('.vjs-play-control').trigger('focus');
           }
         }
@@ -32,41 +34,43 @@ class SpatialNavigation extends Plugin {
         .find('.vjs-button')
         .attr('tabindex', '-1')
         .on('keydown', (event: KeyboardEvent) => {
-          event.preventDefault();
+          const element = event.target as HTMLElement;
 
           if (event.keyCode === 13) {
             // Enter
-            $(':focus').trigger('click');
+            $(element).trigger('click');
           } else if (event.keyCode === 37) {
             // ArrowLeft
-            $(':focus')
+            $(element)
               .prevAll('.vjs-button:not(.vjs-hidden)')
               .first()
               .trigger('focus');
           } else if (event.keyCode === 39) {
             // ArrowRight
-            $(':focus')
+            $(element)
               .nextAll('.vjs-button:not(.vjs-hidden)')
               .first()
               .trigger('focus');
           }
+
+          return false;
         });
 
       $('.vjs-control-bar')
         .find('div.vjs-menu-button')
         .on('keydown', (event: KeyboardEvent) => {
-          const node = event.target as HTMLElement;
+          const element = event.target as HTMLElement;
 
           if (event.keyCode === 13) {
             // Enter
-            $(node).find('button.vjs-button').trigger('click');
+            $(element).find('button.vjs-button').trigger('click');
 
-            $(node)
+            $(element)
               .find('ul.vjs-menu-content > li.vjs-menu-item')
               .on('keydown', (event: KeyboardEvent) => {
                 if (event.keyCode === 13) {
                   // Enter
-                  $(node).trigger('focus');
+                  $(element).trigger('focus');
                 }
               });
           }
