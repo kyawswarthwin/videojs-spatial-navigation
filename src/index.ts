@@ -24,7 +24,7 @@ class SpatialNavigation extends Plugin {
 
         if (event.keyCode === 13) {
           // Enter
-          if ($(element).is('.video-js')) {
+          if (!$(element).is('li.vjs-menu-item')) {
             $('.vjs-play-control').trigger('focus');
           }
         }
