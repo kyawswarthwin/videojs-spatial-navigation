@@ -24,9 +24,20 @@ class SpatialNavigation extends Plugin {
 
         if (event.keyCode === 13) {
           // Enter
+          event.preventDefault();
+
           if (!$(element).is('li.vjs-menu-item')) {
             $('.vjs-play-control').trigger('focus');
           }
+        }
+      });
+
+      this.player.on('userinactive', () => {
+        if (
+          (!this.player.paused() || this.player.ended()) &&
+          $(':focus').is('.vjs-button')
+        ) {
+          $('.video-js').trigger('focus');
         }
       });
 
